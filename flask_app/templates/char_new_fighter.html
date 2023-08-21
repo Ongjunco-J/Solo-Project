@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body>
+    <div class="container text-center">
+        <div class="row">
+                <div class="col">
+                    <h1>{{char.char_class}}</h1>
+                </div>
+                <div class="col">
+                    <h2>{{user.first_name}} {{user.last_name}}</h2>
+                    <a href="/dashboard" class="btn btn-primary">Your Characters</a>
+                    <a href="/logout" class="btn btn-primary">Logout</a>
+                </div>
+        </div>
+    </div>
+    <div>
+        <form action="/chars/new/create/options" method="post">
+            {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {% for message in messages %}
+                    <p>{{message}}</p>
+                {% endfor %}
+            {% endif %}
+            {% endwith %}
+            <div class="row">
+                <div class="col">
+                        <div class="form-group">
+                            <label for="sub_class">Sub_class</label>
+                            <select name="sub_class" id="sub_class">
+                                    <option value="" disabled selected hidden>Select:</option>
+                                <option value="Battle Master">Battle Master</option>
+                                <option value="Eldritch Knight">Eldritch Knight</option>
+                                <option value="Champion">Champion</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="sub_race">Sub-Race</label>
+                            <select name="sub_race" id="sub_race">
+                                    <option value="" disabled selected hidden>Select:</option>
+                                <option value="None">None</option>
+                                <option value="High Elf">High Elf</option>
+                                <option value="Wood Elf">Wood Elf</option>
+                                <option value="Gold Dwarf">Gold Dwarf</option>
+                                <option value="Shield Dwarf">Shield Dwarf</option>
+                            </select>
+                            <!-- <input type="text" name="sub_race" class="form-control"> -->
+                        </div>
+                        <div class="form-group">
+                            <label for="background">background</label>
+                            <select name="background" id="background">
+                                    <option value="" disabled selected hidden>Select:</option>
+                                <option value="Soldier">Soldier</option>
+                                <option value="Urchin">Urchin</option>
+                                <option value="Acolyte">Acolyte</option>
+                            </select>
+                            <input type="text" name="background" class="form-control">
+                        </div>
+                        <!-- <input type="text" name="sub_class" class="form-control"> -->
+                    </div>
+                    <!-- <div class="form-group">
+                        <label for="race">Race</label>
+                        <select name="race" id="race">
+                                <option value="" disabled selected hidden>Select:</option>
+                            <option value="Human">Human</option>
+                            <option value="Elf">Elf</option>
+                            <option value="Dwarf">Dwarf</option>
+                        </select>
+                        <input type="text" name="race" class="form-control"> -->
+                    </div> -->
+                    
+                    <!-- <div class="form-group">
+                        <label for="race">Race</label>
+                        <input type="text" name="race" class="form-control">
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group">
+                        <label for="sub_race">Sub_Race</label>
+                        <input type="text" name="sub_race" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="number_of_sasquatches">Number of Sasquatches</label>
+                        <input type="number" name="number_of_sasquatches" class="form-control">
+                    </div> -->
+                </div>
+            </div>
+            <input type="hidden" name="user_id" value="{{session['user_id']}}">
+            <button type="submit" class="btn btn-primary">Create Your Character! </button>
+        </form>
+    </div>
+</body>
+</html>

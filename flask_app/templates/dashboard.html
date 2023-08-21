@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body>
+    <div class="container text-center">
+        <div class="row">
+                <div class="col">
+                    <h1>Your Characters</h1>
+                </div>
+                <div class="col">
+                    <h2 >{{user.first_name}} {{user.last_name}}</h2>
+                    <a href="/chars/new" class="btn btn-primary">Create a Character!</a>
+                    <a href="/logout" class="btn btn-primary">Logout</a>
+                </div>
+        </div>
+    </div>
+    <div>
+        <h3>Your Characters</h3>
+        <table class="table table-striped">
+            <tr>
+                {% for char in all_chars %}
+            <tr>
+            <td>{{char.char_class}}</td>
+            <td>{{char.sub_class}}</td>
+            <td>{{char.race}}</td>
+            <td>{{char.sub_race}}</td>
+            <td>{{char.background}}</td>
+            <td>
+                <a href="/chars/show/{{char.id}}" class="btn btn-primary">View</a>
+                {% if session['user_id'] == char.user_id %}
+                <a href="/chars/edit/{{char.id}}" class="btn btn-primary">Edit</a>
+                <a href="/chars/delete/{{char.id}}" class="btn btn-primary">Delete</a>
+                {% endif %}
+            </td>
+            </tr>
+                {% endfor %}
+            </tr>
+        </table>
+    </div>
+</body>
+</html>
